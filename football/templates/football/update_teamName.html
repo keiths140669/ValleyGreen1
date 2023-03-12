@@ -1,0 +1,22 @@
+{% extends 'football/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+	<h1>Update Team Name</h1>
+	<br/>
+    <form action='' method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br/>
+        <input type="submit" value="Update" class="btn btn-primary">
+
+
+{% else %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <h1>Sorry! You Must Be Logged In to View This!</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+{% endblock %}

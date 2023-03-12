@@ -1,0 +1,51 @@
+{% extends 'football/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  
+	<h1>&#128467;U11 Fixtures</h1>
+	<br/>
+
+{% for fixture in fixture_list_U11 reversed %}
+
+
+
+<div class="card border-success mb-3 bg-success p-2 text-dark bg-opacity-25 text-center border border-3">
+  <div class="card-header text-white bg-success mb-3">&#128467;
+    {{ fixture.fixture_date }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">&#9917; {{ fixture.home_team }} v {{ fixture.away_team }} &#9917;</h5>
+    <p class="card-text">
+    <hr>
+    	
+    	<h6><strong>Half Time Score: </strong>{{ fixture.half_time }}</h6>
+    	<h6><strong>Full Time Score: </strong>{{ fixture.full_time }}</h6>
+      <br/>
+      <h6><strong>Player Of The Match: </strong>{{ fixture.player_of_the_match }}&#127942;</h6>
+      <br/>
+		  <h6><strong>Elliott Goal Assists: </strong>{{ fixture.goal_assists }}</h6>
+      <h6><strong>Elliott Goals Scored: </strong>{{ fixture.goals_scored }}</h6>
+      <hr>
+      <h6><strong>Comments: </strong>{{ fixture.comments }}</h6>
+      <hr>
+      <h6><strong>Players: </strong>
+      {% for player in fixture.playing.all %}
+        {{ player }},
+      {% endfor %}
+		
+    </p>
+  </div>
+</div>
+<br/>
+	
+{% endfor %}
+
+{% else %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <h1>Sorry! You Must Be Logged In to View This!</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+{% endblock content%}
